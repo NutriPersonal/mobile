@@ -19,6 +19,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.9.2"
 
 # See: https://dart.dev/tools/pub/pubspec
 flutter:
@@ -61,3 +62,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_icons:
+  image_path: "assets/icon/icon.png"
+  ios: false
+  android: "launcher_icon"
