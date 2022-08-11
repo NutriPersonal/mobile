@@ -10,11 +10,13 @@ class ChatBotScreen extends StatefulWidget {
 }
 
 class _ChatBotScreenState extends State<ChatBotScreen> {
+  final int screenId = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MainAppBarWidget(),
-      drawer: const MainDrawerWidget(),
+      drawer: MainDrawerWidget(screenId: screenId),
       body: Container(
         child: const Text("ChatBot Screen"),
       ),

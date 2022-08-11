@@ -7,37 +7,40 @@ class MainDrawerNavItemWidget extends StatelessWidget {
     required this.labelText,
     required this.iconName,
     required this.screen,
+    required this.selected,
   }) : super(key: key);
 
   final BuildContext context;
   final String labelText;
   final IconData iconName;
   final Widget screen;
+  final bool selected;
 
   @override
   Widget build(BuildContext context) {
-    const color = Colors.grey;
-    const hoverColor = Colors.blueGrey;
+    const hoverColor = Color(0x222FC4B2);
 
     return ListTile(
       onTap: () => {navigateToScreen()},
-      hoverColor: hoverColor,
+      selectedTileColor: hoverColor,
+      selected: selected,
       leading: Icon(
         iconName,
-        color: Colors.grey,
+        color: selected ? Color(0xff289c8e) : Color(0xff2FC4B2),
       ),
       title: Text(
         labelText,
-        style: const TextStyle(
-          color: color,
+        style: TextStyle(
+          color: selected ? Color(0xff289c8e) : Color(0xff2FC4B2),
+          fontSize: 18,
         ),
       ),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(5),
-          topRight: Radius.circular(5),
-          bottomRight: Radius.circular(5),
-          bottomLeft: Radius.circular(5),
+          // topLeft: Radius.circular(5),
+          topRight: Radius.circular(30),
+          bottomRight: Radius.circular(30),
+          // bottomLeft: Radius.circular(5),
         ),
       ),
     );

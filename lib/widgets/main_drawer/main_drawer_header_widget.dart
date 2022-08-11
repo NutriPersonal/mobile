@@ -34,22 +34,21 @@ class MainDrawerHeaderWidget extends StatelessWidget {
                 Text(
                   name,
                   style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xff2FC4B2),
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff289c8e),
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   email,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13,
-                    color: Color(0xffB2F0E8),
+                    color: Color(0x442FC4B2),
                   ),
                 ),
               ],
             ),
-            const Spacer(),
           ],
         ),
       ),

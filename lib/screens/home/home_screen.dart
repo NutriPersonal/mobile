@@ -11,11 +11,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final int screenId = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MainAppBarWidget(),
-      drawer: const MainDrawerWidget(),
+      drawer: MainDrawerWidget(screenId: screenId),
       body: Container(
         child: const Text("Home Screen"),
       ),

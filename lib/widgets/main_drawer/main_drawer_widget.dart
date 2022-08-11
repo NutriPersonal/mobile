@@ -6,7 +6,8 @@ import 'package:nutripersonal/widgets/main_drawer/main_drawer_header_widget.dart
 import 'package:nutripersonal/widgets/main_drawer/main_drawer_nav_item_widget.dart';
 
 class MainDrawerWidget extends StatelessWidget {
-  const MainDrawerWidget({Key? key}) : super(key: key);
+  const MainDrawerWidget({Key? key, required this.screenId}) : super(key: key);
+  final int screenId;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,8 @@ class MainDrawerWidget extends StatelessWidget {
                       urlImage: urlImage,
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      // padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.only(right: 50),
                       child: Column(
                         children: [
                           MainDrawerNavItemWidget(
@@ -36,18 +38,23 @@ class MainDrawerWidget extends StatelessWidget {
                             labelText: 'Início',
                             iconName: Icons.home,
                             screen: const HomeScreen(),
+                            selected: screenId == 0,
                           ),
+                          const SizedBox(height: 8),
                           MainDrawerNavItemWidget(
                             context: context,
                             labelText: 'ChatBot',
                             iconName: Icons.chat,
                             screen: const ChatBotScreen(),
+                            selected: screenId == 1,
                           ),
+                          const SizedBox(height: 8),
                           MainDrawerNavItemWidget(
                             context: context,
                             labelText: 'Settings',
                             iconName: Icons.settings,
                             screen: const SettingsScreen(),
+                            selected: screenId == 2,
                           ),
                         ],
                       ),
@@ -58,12 +65,40 @@ class MainDrawerWidget extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Column(
                 children: [
-                  Text("Suporte "),
-                  Text("GitHub "),
-                  Text("Instagram"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text(
+                        "Suporte ",
+                        style: TextStyle(color: Color(0xff117c6f)),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "GitHub ",
+                        style: TextStyle(color: Color(0xff117c6f)),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "Instagram ",
+                        style: TextStyle(color: Color(0xff117c6f)),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: Text(
+                      "v1.0.0",
+                      style: TextStyle(
+                        color: Colors.grey.shade300,
+                      ),
+                    ),
+                  )
                 ],
               ),
             )
