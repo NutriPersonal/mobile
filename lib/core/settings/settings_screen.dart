@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nutripersonal/widgets/main_app_bar/main_app_bar_widget.dart';
+import 'package:nutripersonal/widgets/main_drawer/main_drawer_widget.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -10,6 +12,12 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: const MainAppBarWidget(),
+      drawer: const MainDrawerWidget(),
+      body: Container(
+        child: const Text("Settings Screen"),
+      ),
+    );
   }
 }
