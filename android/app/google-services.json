@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "255248004338",
+    "project_id": "nutripersonal-pesq-fb",
+    "storage_bucket": "nutripersonal-pesq-fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255248004338:android:23a9e0b2ef407de37e8c6b",
+        "android_client_info": {
+          "package_name": "nutripersonal.srbrunoferreira"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "255248004338-pg4dur7p6dmc0djleoih1j4c7a9uvkt8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqA6OR2SiGqx1xiNBpWc2jeCirfnOXsD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255248004338-pg4dur7p6dmc0djleoih1j4c7a9uvkt8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
