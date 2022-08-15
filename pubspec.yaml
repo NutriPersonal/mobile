@@ -29,6 +29,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/img/
 
   # See: https://docs.flutter.dev/cookbook/design/fonts.
   fonts:
