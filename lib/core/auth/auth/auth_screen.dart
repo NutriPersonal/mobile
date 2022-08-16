@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nutripersonal/constants/app_constants.dart';
 import 'package:nutripersonal/constants/assets_paths.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -23,7 +24,7 @@ class AuthScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                     dragStartBehavior: DragStartBehavior.down,
                     clipBehavior: Clip.none,
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -31,12 +32,12 @@ class AuthScreen extends StatelessWidget {
                           image: AssetImage(AppAssets.logotype),
                           width: 250,
                         ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 60),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 60),
                           child: Text(
                             "Fazer login",
                             style: TextStyle(
-                              color: Color(0x88289c8e),
+                              color: AppConstants.dark.withAlpha(200),
                               fontSize: 24,
                               fontWeight: FontWeight.w700,
                             ),
@@ -51,7 +52,7 @@ class AuthScreen extends StatelessWidget {
                             ElevatedButton(
                               onPressed: loginWithPasswd,
                               style: ElevatedButton.styleFrom(
-                                primary: const Color(0xff2FC4B2),
+                                primary: AppConstants.normal,
                                 minimumSize: const Size.fromHeight(50),
                               ),
                               child: const Text(
@@ -67,18 +68,18 @@ class AuthScreen extends StatelessWidget {
                                   OutlinedButton.icon(
                                     onPressed: loginWithGoogle,
                                     style: OutlinedButton.styleFrom(
-                                      padding: EdgeInsets.all(10),
-                                      primary: Color(0xff8DE5DB),
-                                      side: BorderSide(
+                                      padding: const EdgeInsets.all(10),
+                                      primary: AppConstants.light,
+                                      side: const BorderSide(
                                         width: 1,
-                                        color: Color(0x99B2F0E8),
+                                        color: AppConstants.lighter,
                                       ),
                                     ),
                                     label: const Text(
                                       "Entrar com conta do Google",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        color: Color(0xff8DE5DB),
+                                        color: AppConstants.light,
                                       ),
                                     ),
                                     icon: SvgPicture.asset(
@@ -106,9 +107,9 @@ class AuthScreen extends StatelessWidget {
   }
 
   Widget input(String label, IconData icon, TextEditingController controller) {
-    const borderColor = Color(0x882FC4B2);
-    const border = OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(10)),
+    var borderColor = AppConstants.normal.withAlpha(224);
+    var border = OutlineInputBorder(
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
       borderSide: BorderSide(
         color: borderColor,
         width: 2,
@@ -152,8 +153,8 @@ class AuthScreen extends StatelessWidget {
           child: Text(
             "Cadastrar",
             style: textStyle.merge(
-              TextStyle(
-                color: Color(0xff2FC4B2),
+              const TextStyle(
+                color: AppConstants.normal,
                 fontWeight: FontWeight.w600,
               ),
             ),
