@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/physics.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nutripersonal/constants/assets_paths.dart';
 
@@ -10,6 +12,7 @@ class AuthScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       body: SafeArea(
         minimum: const EdgeInsets.all(25),
         child: Column(
@@ -17,80 +20,85 @@ class AuthScreen extends StatelessWidget {
             Expanded(
               child: Center(
                 child: Form(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Image(
-                        image: AssetImage(AppAssets.logotype),
-                        width: 320,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 60),
-                        child: Text(
-                          "Fazer login",
-                          style: TextStyle(
-                            color: Color(0x88289c8e),
-                            fontSize: 24,
-                            fontWeight: FontWeight.w700,
+                  child: SingleChildScrollView(
+                    dragStartBehavior: DragStartBehavior.down,
+                    clipBehavior: Clip.none,
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Image(
+                          image: AssetImage(AppAssets.logotype),
+                          width: 320,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 60),
+                          child: Text(
+                            "Fazer login",
+                            style: TextStyle(
+                              color: Color(0x88289c8e),
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                      ),
-                      Column(
-                        children: [
-                          input("E-mail", Icons.email, _emailController),
-                          const SizedBox(height: 20),
-                          input("Senha", Icons.password, _pwdController),
-                          const SizedBox(height: 35),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size.fromHeight(50),
+                        Column(
+                          children: [
+                            input("E-mail", Icons.email, _emailController),
+                            const SizedBox(height: 20),
+                            input("Senha", Icons.password, _pwdController),
+                            const SizedBox(height: 35),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size.fromHeight(50),
+                              ),
+                              onPressed: loginWithPasswd,
+                              child: const Text(
+                                "Entrar",
+                                style: TextStyle(fontSize: 16),
+                              ),
                             ),
-                            onPressed: loginWithPasswd,
-                            child: const Text(
-                              "Entrar",
-                              style: TextStyle(fontSize: 16),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 50),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  OutlinedButton.icon(
+                                    onPressed: loginWithGoogle,
+                                    style: OutlinedButton.styleFrom(
+                                      padding: EdgeInsets.all(10),
+                                    ),
+                                    label: const Text(
+                                      "Entrar com conta do Google",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    icon: SvgPicture.asset(
+                                      AppAssets.googleIcon,
+                                      width: 30,
+                                      height: 30,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 50),
-                            child: Column(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                OutlinedButton.icon(
-                                  onPressed: loginWithGoogle,
-                                  style: OutlinedButton.styleFrom(
-                                    padding: EdgeInsets.all(10),
-                                  ),
-                                  label: const Text(
-                                    "Entrar com conta do Google",
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  icon: SvgPicture.asset(
-                                    AppAssets.googleIcon,
-                                    width: 30,
-                                    height: 30,
-                                  ),
+                                Text("Não tem conta? "),
+                                InkWell(
+                                  highlightColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  splashColor: Colors.transparent,
+                                  onTap: goToSignUpPage,
+                                  child: Text("Cadastrar"),
                                 ),
                               ],
                             ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Não tem conta? "),
-                              InkWell(
-                                highlightColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                splashColor: Colors.transparent,
-                                onTap: goToSignUpPage,
-                                child: Text("Cadastrar"),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -112,6 +120,7 @@ class AuthScreen extends StatelessWidget {
     );
 
     return TextFormField(
+      autofocus: true,
       controller: controller,
       decoration: InputDecoration(
         labelText: label,
