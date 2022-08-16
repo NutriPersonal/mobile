@@ -29,7 +29,7 @@ class AuthScreen extends StatelessWidget {
                       children: [
                         const Image(
                           image: AssetImage(AppAssets.logotype),
-                          width: 320,
+                          width: 250,
                         ),
                         const Padding(
                           padding: EdgeInsets.symmetric(vertical: 60),
@@ -49,10 +49,11 @@ class AuthScreen extends StatelessWidget {
                             input("Senha", Icons.password, _pwdController),
                             const SizedBox(height: 35),
                             ElevatedButton(
+                              onPressed: loginWithPasswd,
                               style: ElevatedButton.styleFrom(
+                                primary: const Color(0xff2FC4B2),
                                 minimumSize: const Size.fromHeight(50),
                               ),
-                              onPressed: loginWithPasswd,
                               child: const Text(
                                 "Entrar",
                                 style: TextStyle(fontSize: 16),
@@ -67,34 +68,29 @@ class AuthScreen extends StatelessWidget {
                                     onPressed: loginWithGoogle,
                                     style: OutlinedButton.styleFrom(
                                       padding: EdgeInsets.all(10),
+                                      primary: Color(0xff8DE5DB),
+                                      side: BorderSide(
+                                        width: 1,
+                                        color: Color(0x99B2F0E8),
+                                      ),
                                     ),
                                     label: const Text(
                                       "Entrar com conta do Google",
-                                      style: TextStyle(fontSize: 16),
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Color(0xff8DE5DB),
+                                      ),
                                     ),
                                     icon: SvgPicture.asset(
                                       AppAssets.googleIcon,
-                                      width: 30,
-                                      height: 30,
+                                      width: 20,
+                                      height: 20,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("Não tem conta? "),
-                                InkWell(
-                                  highlightColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  splashColor: Colors.transparent,
-                                  onTap: goToSignUpPage,
-                                  child: Text("Cadastrar"),
-                                ),
-                              ],
-                            ),
+                            _signUpRow(),
                           ],
                         ),
                       ],
@@ -135,6 +131,35 @@ class AuthScreen extends StatelessWidget {
         focusedBorder: border,
         enabledBorder: border,
       ),
+    );
+  }
+
+  Widget _signUpRow() {
+    var textStyle = TextStyle(
+      color: Colors.grey.shade400,
+    );
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("Não tem conta? ", style: textStyle),
+        InkWell(
+          highlightColor: Colors.transparent,
+          focusColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          onTap: goToSignUpPage,
+          child: Text(
+            "Cadastrar",
+            style: textStyle.merge(
+              TextStyle(
+                color: Color(0xff2FC4B2),
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
