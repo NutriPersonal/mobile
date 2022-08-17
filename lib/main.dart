@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nutripersonal/config/themes/dark_theme.dart';
 import 'package:nutripersonal/config/themes/light_theme.dart';
 import 'package:nutripersonal/core/auth/auth/auth_screen.dart';
-import 'package:nutripersonal/core/auth/login/login_screen.dart';
 import 'package:nutripersonal/screens/home/home_screen.dart';
 import 'package:nutripersonal/widgets/main_drawer/main_drawer_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,9 +21,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'NutriPersonal',
       theme: lightTheme,
-      home: AuthScreen(),
+      home: HomeScreen(),
     );
   }
 }

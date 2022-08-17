@@ -7,4 +7,7 @@ class AppConstants {
   static const Color light = Color(0xff8DE5DB);
   static const Color lighter = Color(0xffB2F0E8);
   static const Color normalDark = Color(0xff05B3A2);
+
+  // TODO: use constants in screens
+  static const int HomeScreenId = 0;
 }
