@@ -10,4 +10,8 @@ class AppConstants {
 
   // TODO: use constants in screens
   static const int HomeScreenId = 0;
+  static const int ChatBotScreenId = 1;
+  static const int SettingsScreenId = 2;
+  static const int ProfileScreenId = 3;
+  static const int NutritionistsScreenId = 4;
 }

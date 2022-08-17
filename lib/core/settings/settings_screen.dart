@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nutripersonal/constants/app_constants.dart';
+import 'package:nutripersonal/widgets/bottom_drawer/bottom_drawer_widget.dart';
 import 'package:nutripersonal/widgets/main_app_bar/main_app_bar_widget.dart';
 import 'package:nutripersonal/widgets/main_drawer/main_drawer_widget.dart';
 
@@ -10,16 +12,17 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  final int screenId = 2;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const MainAppBarWidget(),
-      drawer: MainDrawerWidget(screenId: screenId),
-      body: Container(
-        child: const Text("Settings Screen"),
+    return const Scaffold(
+      appBar: MainAppBarWidget(),
+      drawer: MainDrawerWidget(
+        screenId: AppConstants.SettingsScreenId,
       ),
+      bottomNavigationBar: BottomDrawerWidget(
+        screenId: AppConstants.SettingsScreenId,
+      ),
+      body: Text("Settings Screen"),
     );
   }
 }

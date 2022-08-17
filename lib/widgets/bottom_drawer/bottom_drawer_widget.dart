@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nutripersonal/constants/app_constants.dart';
+import 'package:nutripersonal/core/settings/settings_screen.dart';
+import 'package:nutripersonal/screens/home/home_screen.dart';
+import 'package:nutripersonal/screens/nutritionists/nutritionists_screen.dart';
+import 'package:nutripersonal/screens/profile/profile_screen.dart';
 
 class BottomDrawerWidget extends StatelessWidget {
   const BottomDrawerWidget({Key? key, required this.screenId})
@@ -10,30 +14,37 @@ class BottomDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      elevation: 0,
+      color: Colors.white38,
+      // color: Colors.transparent,
       child: Row(
         children: [
           _buildButton(
+            context,
             screenId == AppConstants.HomeScreenId,
             "Início",
-            () {},
+            const HomeScreen(),
             Icons.home,
           ),
           _buildButton(
-            screenId == 4,
+            context,
+            screenId == AppConstants.NutritionistsScreenId,
             "Nutricionistas",
-            () {},
+            const NutritionistsScreen(),
             Icons.people_outline,
           ),
           _buildButton(
-            screenId == 5,
+            context,
+            screenId == AppConstants.ProfileScreenId,
             "Perfil",
-            () {},
+            const ProfileScreen(),
             Icons.person_outline,
           ),
           _buildButton(
-            screenId == 6,
+            context,
+            screenId == AppConstants.SettingsScreenId,
             "Configurações",
-            () {},
+            const SettingsScreen(),
             Icons.settings_outlined,
           ),
         ],
@@ -42,9 +53,10 @@ class BottomDrawerWidget extends StatelessWidget {
   }
 
   Widget _buildButton(
+    BuildContext context,
     bool selected,
     String label,
-    VoidCallback onTap,
+    Widget screen,
     IconData icon,
   ) {
     var color =
@@ -52,7 +64,12 @@ class BottomDrawerWidget extends StatelessWidget {
 
     return Expanded(
       child: InkWell(
-        onTap: onTap,
+        onTap: () => {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (builder) => screen),
+          )
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Column(
@@ -67,7 +84,7 @@ class BottomDrawerWidget extends StatelessWidget {
                 label,
                 style: TextStyle(
                   color: color,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
                   fontSize: 12,
                 ),
               )
