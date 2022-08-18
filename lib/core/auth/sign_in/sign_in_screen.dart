@@ -14,9 +14,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
       body: SafeArea(
-        minimum: const EdgeInsets.all(25),
         child: Column(
           children: [
             Expanded(
@@ -25,7 +23,12 @@ class SignInScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                     dragStartBehavior: DragStartBehavior.down,
                     clipBehavior: Clip.none,
-                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.only(
+                      left: 25,
+                      right: 25,
+                      top: 80,
+                      bottom: 30,
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
