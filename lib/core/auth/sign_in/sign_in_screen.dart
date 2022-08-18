@@ -111,7 +111,7 @@ class SignInScreen extends StatelessWidget {
   }
 
   Widget input(String label, IconData icon, TextEditingController controller) {
-    var borderColor = AppConstants.normal.withAlpha(224);
+    var borderColor = AppConstants.normal.withAlpha(120);
     var border = OutlineInputBorder(
       borderRadius: const BorderRadius.all(Radius.circular(10)),
       borderSide: BorderSide(

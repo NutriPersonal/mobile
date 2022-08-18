@@ -111,7 +111,7 @@ class SignUpScreen extends StatelessWidget {
   }
 
   Widget input(String label, IconData icon, TextEditingController controller) {
-    var borderColor = AppConstants.normal.withAlpha(224);
+    var borderColor = AppConstants.normal.withAlpha(120);
     var border = OutlineInputBorder(
       borderRadius: const BorderRadius.all(Radius.circular(10)),
       borderSide: BorderSide(
@@ -125,7 +125,7 @@ class SignUpScreen extends StatelessWidget {
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(
-          color: Colors.grey[600],
+          color: Colors.grey.shade400,
           fontWeight: FontWeight.w500,
         ),
         suffixIcon: Icon(icon, color: borderColor),
