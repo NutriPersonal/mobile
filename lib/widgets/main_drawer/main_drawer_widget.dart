@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nutripersonal/constants/app_constants.dart';
+import 'package:nutripersonal/core/auth/sign_in/sign_in_screen.dart';
+import 'package:nutripersonal/core/auth/sign_up/sign_up_screen.dart';
 import 'package:nutripersonal/core/settings/settings_screen.dart';
 import 'package:nutripersonal/screens/chatbot/chatbot_screen.dart';
 import 'package:nutripersonal/screens/home/home_screen.dart';
@@ -30,33 +33,52 @@ class MainDrawerWidget extends StatelessWidget {
                     ),
                     Container(
                       // padding: const EdgeInsets.symmetric(horizontal: 20),
+                      height: 300,
                       padding: const EdgeInsets.only(right: 50),
-                      child: Column(
-                        children: [
-                          MainDrawerNavItemWidget(
-                            context: context,
-                            labelText: 'Início',
-                            iconName: Icons.home,
-                            screen: const HomeScreen(),
-                            selected: screenId == 0,
-                          ),
-                          const SizedBox(height: 8),
-                          MainDrawerNavItemWidget(
-                            context: context,
-                            labelText: 'ChatBot',
-                            iconName: Icons.chat,
-                            screen: const ChatBotScreen(),
-                            selected: screenId == 1,
-                          ),
-                          const SizedBox(height: 8),
-                          MainDrawerNavItemWidget(
-                            context: context,
-                            labelText: 'Settings',
-                            iconName: Icons.settings,
-                            screen: const SettingsScreen(),
-                            selected: screenId == 2,
-                          ),
-                        ],
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            MainDrawerNavItemWidget(
+                              context: context,
+                              labelText: 'Início',
+                              iconName: Icons.home,
+                              screen: const HomeScreen(),
+                              selected: screenId == 0,
+                            ),
+                            const SizedBox(height: 8),
+                            MainDrawerNavItemWidget(
+                              context: context,
+                              labelText: 'ChatBot',
+                              iconName: Icons.chat,
+                              screen: const ChatBotScreen(),
+                              selected: screenId == 1,
+                            ),
+                            const SizedBox(height: 8),
+                            MainDrawerNavItemWidget(
+                              context: context,
+                              labelText: 'Settings',
+                              iconName: Icons.settings,
+                              screen: const SettingsScreen(),
+                              selected: screenId == 2,
+                            ),
+                            const SizedBox(height: 8),
+                            MainDrawerNavItemWidget(
+                              context: context,
+                              labelText: 'Sign in',
+                              iconName: Icons.login,
+                              screen: SignInScreen(),
+                              selected: screenId == AppConstants.SignInScreenId,
+                            ),
+                            const SizedBox(height: 8),
+                            MainDrawerNavItemWidget(
+                              context: context,
+                              labelText: 'Sign up',
+                              iconName: Icons.create,
+                              screen: SignUpScreen(),
+                              selected: screenId == AppConstants.SignUpScreenId,
+                            ),
+                          ],
+                        ),
                       ),
                     )
                   ],

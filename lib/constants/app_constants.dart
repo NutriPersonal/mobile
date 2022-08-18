@@ -14,4 +14,6 @@ class AppConstants {
   static const int SettingsScreenId = 2;
   static const int ProfileScreenId = 3;
   static const int NutritionistsScreenId = 4;
+  static const int SignInScreenId = 5;
+  static const int SignUpScreenId = 6;
 }
