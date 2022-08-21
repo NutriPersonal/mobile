@@ -17,10 +17,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return const Scaffold(
       appBar: MainAppBarWidget(),
       drawer: MainDrawerWidget(
-        screenId: AppConstants.SettingsScreenId,
+        screenId: AppConstants.settingsScreenId,
       ),
       bottomNavigationBar: BottomDrawerWidget(
-        screenId: AppConstants.SettingsScreenId,
+        screenId: AppConstants.settingsScreenId,
       ),
       body: Text("Settings Screen"),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nutripersonal/constants/app_colors.dart';
 import 'package:nutripersonal/constants/app_constants.dart';
 import 'package:nutripersonal/constants/assets_paths.dart';
 import 'package:nutripersonal/core/auth/sign_in/sign_in_screen.dart';
@@ -8,6 +9,8 @@ import 'package:nutripersonal/core/auth/sign_in/sign_in_screen.dart';
 class SignUpScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwdController = TextEditingController();
+
+  SignUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +42,10 @@ class SignUpScreen extends StatelessWidget {
                           child: Text(
                             "Criar nova conta",
                             style: TextStyle(
-                              color: AppConstants.dark.withAlpha(200),
-                              fontSize: 24,
+                              color: AppColors.primary.withAlpha(120),
+                              fontSize: 32,
                               fontWeight: FontWeight.w700,
+                              fontFamily: "Courgette",
                             ),
                           ),
                         ),
@@ -56,7 +60,6 @@ class SignUpScreen extends StatelessWidget {
                             ElevatedButton(
                               onPressed: loginWithPasswd,
                               style: ElevatedButton.styleFrom(
-                                primary: AppConstants.normal,
                                 minimumSize: const Size.fromHeight(50),
                               ),
                               child: const Text(
@@ -73,17 +76,11 @@ class SignUpScreen extends StatelessWidget {
                                     onPressed: loginWithGoogle,
                                     style: OutlinedButton.styleFrom(
                                       padding: const EdgeInsets.all(10),
-                                      primary: AppConstants.light,
-                                      side: const BorderSide(
-                                        width: 1,
-                                        color: AppConstants.lighter,
-                                      ),
                                     ),
                                     label: const Text(
                                       "Entrar com conta do Google",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        color: AppConstants.light,
                                       ),
                                     ),
                                     icon: SvgPicture.asset(
@@ -111,29 +108,11 @@ class SignUpScreen extends StatelessWidget {
   }
 
   Widget input(String label, IconData icon, TextEditingController controller) {
-    var borderColor = AppConstants.normal.withAlpha(120);
-    var border = OutlineInputBorder(
-      borderRadius: const BorderRadius.all(Radius.circular(10)),
-      borderSide: BorderSide(
-        color: borderColor,
-        width: 2,
-      ),
-    );
-
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(
-          color: Colors.grey.shade400,
-          fontWeight: FontWeight.w500,
-        ),
-        suffixIcon: Icon(icon, color: borderColor),
-        iconColor: borderColor,
-        fillColor: borderColor,
-        border: border,
-        focusedBorder: border,
-        enabledBorder: border,
+        suffixIcon: Icon(icon),
       ),
     );
   }
@@ -157,7 +136,7 @@ class SignUpScreen extends StatelessWidget {
             "Entrar",
             style: textStyle.merge(
               const TextStyle(
-                color: AppConstants.normal,
+                color: AppColors.primary,
                 fontWeight: FontWeight.w600,
               ),
             ),

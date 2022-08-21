@@ -12,10 +12,10 @@ class NutritionistsScreen extends StatelessWidget {
     return const Scaffold(
       appBar: MainAppBarWidget(),
       drawer: MainDrawerWidget(
-        screenId: AppConstants.NutritionistsScreenId,
+        screenId: AppConstants.nutritionistsScreenId,
       ),
       bottomNavigationBar: BottomDrawerWidget(
-        screenId: AppConstants.NutritionistsScreenId,
+        screenId: AppConstants.nutritionistsScreenId,
       ),
       body: Text("Nutritionists Screen"),
     );

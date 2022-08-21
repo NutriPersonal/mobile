@@ -17,10 +17,10 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     return const Scaffold(
       appBar: MainAppBarWidget(),
       drawer: MainDrawerWidget(
-        screenId: AppConstants.ChatBotScreenId,
+        screenId: AppConstants.chatBotScreenId,
       ),
       bottomNavigationBar: BottomDrawerWidget(
-        screenId: AppConstants.ChatBotScreenId,
+        screenId: AppConstants.chatBotScreenId,
       ),
       body: Text("ChatBot Screen"),
     );

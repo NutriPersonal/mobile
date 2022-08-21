@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nutripersonal/constants/app_colors.dart';
+import 'package:nutripersonal/constants/app_constants.dart';
 
 class MainDrawerHeaderWidget extends StatelessWidget {
   const MainDrawerHeaderWidget({
@@ -34,17 +36,18 @@ class MainDrawerHeaderWidget extends StatelessWidget {
                 Text(
                   name,
                   style: const TextStyle(
-                    fontSize: 22,
+                    fontSize: 24,
+                    fontFamily: "Courgette",
                     fontWeight: FontWeight.w500,
-                    color: Color(0xff289c8e),
+                    color: AppColors.primary,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   email,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 13,
-                    color: Color(0x442FC4B2),
+                    color: AppColors.pLight,
                   ),
                 ),
               ],

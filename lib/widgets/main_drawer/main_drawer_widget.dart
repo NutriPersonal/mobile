@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutripersonal/constants/app_colors.dart';
 import 'package:nutripersonal/constants/app_constants.dart';
 import 'package:nutripersonal/core/auth/sign_in/sign_in_screen.dart';
 import 'package:nutripersonal/core/auth/sign_up/sign_up_screen.dart';
@@ -67,7 +68,7 @@ class MainDrawerWidget extends StatelessWidget {
                               labelText: 'Sign in',
                               iconName: Icons.login,
                               screen: SignInScreen(),
-                              selected: screenId == AppConstants.SignInScreenId,
+                              selected: screenId == AppConstants.signInScreenId,
                             ),
                             const SizedBox(height: 8),
                             MainDrawerNavItemWidget(
@@ -75,7 +76,7 @@ class MainDrawerWidget extends StatelessWidget {
                               labelText: 'Sign up',
                               iconName: Icons.create,
                               screen: SignUpScreen(),
-                              selected: screenId == AppConstants.SignUpScreenId,
+                              selected: screenId == AppConstants.signUpScreenId,
                             ),
                           ],
                         ),
@@ -94,21 +95,21 @@ class MainDrawerWidget extends StatelessWidget {
                     children: const [
                       Text(
                         "Suporte ",
-                        style: TextStyle(color: Color(0xff117c6f)),
+                        style: TextStyle(color: AppColors.pLight),
                       ),
                       SizedBox(
                         width: 8,
                       ),
                       Text(
                         "GitHub ",
-                        style: TextStyle(color: Color(0xff117c6f)),
+                        style: TextStyle(color: AppColors.pLight),
                       ),
                       SizedBox(
                         width: 8,
                       ),
                       Text(
                         "Instagram ",
-                        style: TextStyle(color: Color(0xff117c6f)),
+                        style: TextStyle(color: AppColors.pLight),
                       ),
                     ],
                   ),

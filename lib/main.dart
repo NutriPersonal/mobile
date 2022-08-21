@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nutripersonal/config/themes/dark_theme.dart';
 import 'package:nutripersonal/config/themes/light_theme.dart';
+import 'package:nutripersonal/constants/app_colors.dart';
 import 'package:nutripersonal/core/auth/auth/auth_screen.dart';
+import 'package:nutripersonal/core/auth/sign_in/sign_in_screen.dart';
+import 'package:nutripersonal/core/auth/sign_up/sign_up_screen.dart';
 import 'package:nutripersonal/screens/home/home_screen.dart';
 import 'package:nutripersonal/widgets/main_drawer/main_drawer_widget.dart';
 import 'package:firebase_core/firebase_core.dart';

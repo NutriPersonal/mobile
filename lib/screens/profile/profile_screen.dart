@@ -12,10 +12,10 @@ class ProfileScreen extends StatelessWidget {
     return const Scaffold(
       appBar: MainAppBarWidget(),
       drawer: MainDrawerWidget(
-        screenId: AppConstants.ProfileScreenId,
+        screenId: AppConstants.profileScreenId,
       ),
       bottomNavigationBar: BottomDrawerWidget(
-        screenId: AppConstants.ProfileScreenId,
+        screenId: AppConstants.profileScreenId,
       ),
       body: Text("Profile Screen"),
     );

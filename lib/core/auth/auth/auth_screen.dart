@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:nutripersonal/constants/app_colors.dart';
 import 'package:nutripersonal/constants/app_constants.dart';
 import 'package:nutripersonal/constants/assets_paths.dart';
 import 'package:nutripersonal/core/auth/sign_in/sign_in_screen.dart';
@@ -35,7 +36,7 @@ class AuthScreen extends StatelessWidget {
                           child: Text(
                             "Olá",
                             style: TextStyle(
-                              color: AppConstants.normal,
+                              color: AppColors.primary,
                               fontSize: 24,
                               fontWeight: FontWeight.w700,
                             ),
@@ -74,18 +75,18 @@ class AuthScreen extends StatelessWidget {
         onPressed: onTap,
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.all(10),
-          primary: AppConstants.light,
+          primary: AppColors.pLight,
           minimumSize: const Size.fromHeight(50),
           side: const BorderSide(
             width: 1,
-            color: AppConstants.lighter,
+            color: AppColors.pLighter,
           ),
         ),
         child: Text(
           label,
           style: const TextStyle(
             fontSize: 15,
-            color: AppConstants.light,
+            color: AppColors.pLight,
           ),
         ),
       );
@@ -94,7 +95,7 @@ class AuthScreen extends StatelessWidget {
     return ElevatedButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
-        primary: AppConstants.normal,
+        primary: AppColors.primary,
         minimumSize: const Size.fromHeight(50),
       ),
       child: Text(label, style: const TextStyle(fontSize: 16)),

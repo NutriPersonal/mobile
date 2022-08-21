@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutripersonal/constants/app_colors.dart';
 import 'package:nutripersonal/constants/app_constants.dart';
 import 'package:nutripersonal/core/settings/settings_screen.dart';
 import 'package:nutripersonal/screens/home/home_screen.dart';
@@ -21,28 +22,28 @@ class BottomDrawerWidget extends StatelessWidget {
         children: [
           _buildButton(
             context,
-            screenId == AppConstants.HomeScreenId,
+            screenId == AppConstants.homeScreenId,
             "Início",
             const HomeScreen(),
             Icons.home,
           ),
           _buildButton(
             context,
-            screenId == AppConstants.NutritionistsScreenId,
+            screenId == AppConstants.nutritionistsScreenId,
             "Nutricionistas",
             const NutritionistsScreen(),
             Icons.people_outline,
           ),
           _buildButton(
             context,
-            screenId == AppConstants.ProfileScreenId,
+            screenId == AppConstants.profileScreenId,
             "Perfil",
             const ProfileScreen(),
             Icons.person_outline,
           ),
           _buildButton(
             context,
-            screenId == AppConstants.SettingsScreenId,
+            screenId == AppConstants.settingsScreenId,
             "Configurações",
             const SettingsScreen(),
             Icons.settings_outlined,
@@ -59,8 +60,7 @@ class BottomDrawerWidget extends StatelessWidget {
     Widget screen,
     IconData icon,
   ) {
-    var color =
-        selected ? AppConstants.normal.withAlpha(224) : Colors.grey.shade400;
+    var color = selected ? AppColors.primary : Colors.grey.shade400;
 
     return Expanded(
       child: InkWell(
@@ -84,7 +84,7 @@ class BottomDrawerWidget extends StatelessWidget {
                 label,
                 style: TextStyle(
                   color: color,
-                  fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                  fontWeight: FontWeight.w500,
                   fontSize: 12,
                 ),
               )

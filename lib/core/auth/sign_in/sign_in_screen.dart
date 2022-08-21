@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nutripersonal/constants/app_colors.dart';
 import 'package:nutripersonal/constants/app_constants.dart';
 import 'package:nutripersonal/constants/assets_paths.dart';
 import 'package:nutripersonal/core/auth/sign_up/sign_up_screen.dart';
@@ -41,7 +42,7 @@ class SignInScreen extends StatelessWidget {
                           child: Text(
                             "Fazer login",
                             style: TextStyle(
-                              color: AppConstants.dark.withAlpha(200),
+                              color: AppColors.pDark.withAlpha(200),
                               fontSize: 24,
                               fontWeight: FontWeight.w700,
                             ),
@@ -56,7 +57,7 @@ class SignInScreen extends StatelessWidget {
                             ElevatedButton(
                               onPressed: loginWithPasswd,
                               style: ElevatedButton.styleFrom(
-                                primary: AppConstants.normal,
+                                primary: AppColors.primary,
                                 minimumSize: const Size.fromHeight(50),
                               ),
                               child: const Text(
@@ -71,19 +72,10 @@ class SignInScreen extends StatelessWidget {
                                 children: [
                                   OutlinedButton.icon(
                                     onPressed: loginWithGoogle,
-                                    style: OutlinedButton.styleFrom(
-                                      padding: const EdgeInsets.all(10),
-                                      primary: AppConstants.light,
-                                      side: const BorderSide(
-                                        width: 1,
-                                        color: AppConstants.lighter,
-                                      ),
-                                    ),
                                     label: const Text(
                                       "Entrar com conta do Google",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        color: AppConstants.light,
                                       ),
                                     ),
                                     icon: SvgPicture.asset(
@@ -111,29 +103,11 @@ class SignInScreen extends StatelessWidget {
   }
 
   Widget input(String label, IconData icon, TextEditingController controller) {
-    var borderColor = AppConstants.normal.withAlpha(120);
-    var border = OutlineInputBorder(
-      borderRadius: const BorderRadius.all(Radius.circular(10)),
-      borderSide: BorderSide(
-        color: borderColor,
-        width: 2,
-      ),
-    );
-
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(
-          color: Colors.grey[600],
-          fontWeight: FontWeight.w500,
-        ),
-        suffixIcon: Icon(icon, color: borderColor),
-        iconColor: borderColor,
-        fillColor: borderColor,
-        border: border,
-        focusedBorder: border,
-        enabledBorder: border,
+        suffixIcon: Icon(icon),
       ),
     );
   }
@@ -157,7 +131,7 @@ class SignInScreen extends StatelessWidget {
             "Cadastrar",
             style: textStyle.merge(
               const TextStyle(
-                color: AppConstants.normal,
+                color: AppColors.primary,
                 fontWeight: FontWeight.w600,
               ),
             ),

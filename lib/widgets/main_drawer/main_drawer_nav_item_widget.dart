@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutripersonal/constants/app_colors.dart';
 
 class MainDrawerNavItemWidget extends StatelessWidget {
   const MainDrawerNavItemWidget({
@@ -18,7 +19,7 @@ class MainDrawerNavItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const hoverColor = Color(0x222FC4B2);
+    var hoverColor = AppColors.pLighter.withAlpha(90);
 
     return ListTile(
       onTap: () => {navigateToScreen()},
@@ -26,12 +27,12 @@ class MainDrawerNavItemWidget extends StatelessWidget {
       selected: selected,
       leading: Icon(
         iconName,
-        color: selected ? Color(0xff289c8e) : Color(0xff2FC4B2),
+        color: selected ? AppColors.pDark : AppColors.primary,
       ),
       title: Text(
         labelText,
         style: TextStyle(
-          color: selected ? Color(0xff289c8e) : Color(0xff2FC4B2),
+          color: selected ? AppColors.pDark : AppColors.primary,
           fontSize: 18,
         ),
       ),

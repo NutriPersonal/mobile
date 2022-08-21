@@ -12,10 +12,10 @@ class HomeScreen extends StatelessWidget {
     return const Scaffold(
       appBar: MainAppBarWidget(),
       drawer: MainDrawerWidget(
-        screenId: AppConstants.HomeScreenId,
+        screenId: AppConstants.homeScreenId,
       ),
       bottomNavigationBar: BottomDrawerWidget(
-        screenId: AppConstants.HomeScreenId,
+        screenId: AppConstants.homeScreenId,
       ),
       body: Text("Home Screen"),
     );

@@ -35,6 +35,11 @@ flutter:
 
   # See: https://docs.flutter.dev/cookbook/design/fonts.
   fonts:
+    - family: Courgette
+      fonts:
+        - asset: assets/fonts/Courgette-Regular.ttf
+          style: normal
+          weight: 400
     - family: Inter
       fonts:
         - asset: assets/fonts/Inter-Thin.ttf
