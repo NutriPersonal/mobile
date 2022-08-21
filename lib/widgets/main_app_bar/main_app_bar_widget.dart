@@ -19,6 +19,7 @@ class MainAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         fontWeight: FontWeight.w400,
         fontSize: 24,
         color: AppColors.pLight,
+        fontFamily: "Courgette",
       ),
     );
   }
