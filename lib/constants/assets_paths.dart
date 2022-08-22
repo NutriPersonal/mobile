@@ -5,4 +5,7 @@ class AppAssets {
   static const String logotype = 'assets/img/logotype.png';
 
   static const String googleIcon = 'assets/icons/google.svg';
+  static const String chatIcon = 'assets/icons/chat.png';
+  static const String dialogFlowCredentialsJson =
+      "assets/config/dialog_flow_auth.json";
 }

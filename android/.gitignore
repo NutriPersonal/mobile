@@ -11,5 +11,4 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
-app/dialogflow-credentials.json
 app/google-services.json
