@@ -1,4 +1,4 @@
-class FireAuthService {
+class GoogleSignInService {
   void signIn() {
     //
   }

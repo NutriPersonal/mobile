@@ -1,16 +1,23 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nutripersonal/constants/app_colors.dart';
-import 'package:nutripersonal/constants/app_constants.dart';
 import 'package:nutripersonal/constants/assets_paths.dart';
 import 'package:nutripersonal/core/auth/sign_in/sign_in_screen.dart';
+import 'package:nutripersonal/screens/home/home_screen.dart';
+import 'package:nutripersonal/ui/app_dialogs.dart';
+import 'package:nutripersonal/utils/app_validators.dart';
+import 'package:nutripersonal/utils/services/firebase_auth_service.dart';
 
 class SignUpScreen extends StatelessWidget {
+  SignUpScreen({Key? key}) : super(key: key);
+
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwdController = TextEditingController();
-
-  SignUpScreen({Key? key}) : super(key: key);
+  final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +28,7 @@ class SignUpScreen extends StatelessWidget {
             Expanded(
               child: Center(
                 child: Form(
+                  key: _formKey,
                   child: SingleChildScrollView(
                     dragStartBehavior: DragStartBehavior.down,
                     clipBehavior: Clip.none,
@@ -51,14 +59,30 @@ class SignUpScreen extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            input("Nome", Icons.person, _emailController),
+                            input(
+                              "Nome",
+                              Icons.person,
+                              _nameController,
+                              AppValidators.name(),
+                            ),
                             const SizedBox(height: 20),
-                            input("E-mail", Icons.email, _emailController),
+                            input(
+                              "E-mail",
+                              Icons.email,
+                              _emailController,
+                              AppValidators.email(),
+                            ),
                             const SizedBox(height: 20),
-                            input("Senha", Icons.password, _pwdController),
+                            input(
+                              "Senha",
+                              Icons.password,
+                              _pwdController,
+                              AppValidators.password(),
+                              true,
+                            ),
                             const SizedBox(height: 35),
                             ElevatedButton(
-                              onPressed: loginWithPasswd,
+                              onPressed: () => signUpWithPasswd(context),
                               style: ElevatedButton.styleFrom(
                                 minimumSize: const Size.fromHeight(50),
                               ),
@@ -107,9 +131,17 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 
-  Widget input(String label, IconData icon, TextEditingController controller) {
+  Widget input(
+    String label,
+    IconData icon,
+    TextEditingController controller,
+    EmailValidator validator, [
+    bool? obscure,
+  ]) {
     return TextFormField(
       controller: controller,
+      validator: validator,
+      obscureText: obscure ?? false,
       decoration: InputDecoration(
         labelText: label,
         suffixIcon: Icon(icon),
@@ -146,8 +178,36 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 
-  void loginWithPasswd() {
-    print("login with password");
+  void signUpWithPasswd(BuildContext context) async {
+    print("Signning");
+    if (_formKey.currentState!.validate()) {
+      final authResult = await _firebaseAuthService.signUp(
+        _nameController.text,
+        _emailController.text,
+        _pwdController.text,
+      );
+
+      switch (authResult) {
+        case 'success':
+          AppDialogs.snackbar(context, 'Bem-vindo(a)!');
+          print("success");
+          break;
+        case 'weak-password':
+          AppDialogs.snackbar(context, 'A senha fornecida é fraca.');
+          print("A senha fornecida é fraca.");
+          break;
+        case 'email-already-in-use':
+          print("O e-mail já está em uso.");
+          AppDialogs.snackbar(context, 'O e-mail já está em uso.');
+          break;
+        default:
+          print(authResult);
+          AppDialogs.snackbar(context, authResult);
+      }
+    } else {
+      print("Informações inválidas");
+      AppDialogs.snackbar(context, 'Informações inválidas');
+    }
   }
 
   void loginWithGoogle() {

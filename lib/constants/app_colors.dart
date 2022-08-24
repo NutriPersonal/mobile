@@ -15,4 +15,6 @@ class AppColors {
 
   /// Primary darker
   static const Color pDarker = Color(0xff117C6F);
+
+  static const Color error = Color(0xffC42F41);
 }

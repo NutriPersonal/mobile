@@ -42,6 +42,10 @@ ThemeData lightTheme = ThemeData(
         // width: 2,
       ),
     ),
+    errorBorder: const OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+      borderSide: BorderSide(color: AppColors.error),
+    ),
     labelStyle: TextStyle(
       color: Colors.grey.shade400,
       fontWeight: FontWeight.w400,
