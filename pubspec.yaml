@@ -17,6 +17,8 @@ dependencies:
   vrouter: ^1.2.1
   firebase_core: ^1.20.1
   dialog_flowtter: ^0.3.1
+  firebase_auth: ^3.6.4
+  form_validator: ^1.0.2
 
 dev_dependencies:
   flutter_test:
