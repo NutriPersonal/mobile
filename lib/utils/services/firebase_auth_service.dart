@@ -20,8 +20,23 @@ class FirebaseAuthService {
     });
   }
 
-  void signIn() {
-    //
+  Future<String> signIn(String email, String password) async {
+    try {
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      return credential.user != null ? 'success' : 'error';
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        return 'Usuário não encontrado';
+      } else if (e.code == 'wrong-password') {
+        return 'Senha incorreta.';
+      } else {
+        return e.toString();
+      }
+    } catch (e) {
+      return e.toString();
+    }
   }
 
   void signOut() async {
