@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "255248004338-8hlp8nnfbf7i2natk4khu7nkvicpt122.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nutripersonal.srbrunoferreira",
+            "certificate_hash": "3e7d8301f100064a9e34033a96ef892d42f55c5b"
+          }
+        },
+        {
           "client_id": "255248004338-pg4dur7p6dmc0djleoih1j4c7a9uvkt8.apps.googleusercontent.com",
           "client_type": 3
         }

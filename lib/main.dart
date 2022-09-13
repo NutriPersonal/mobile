@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nutripersonal/config/themes/dark_theme.dart';
 import 'package:nutripersonal/config/themes/light_theme.dart';
 import 'package:nutripersonal/constants/app_colors.dart';
@@ -51,11 +52,12 @@ class _NutriPersonalState extends State<NutriPersonal> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'NutriPersonal',
       theme: lightTheme,
-      home: SplashScreen(),
+      home: SignUpScreen(),
       navigatorKey: _navigatorKey,
     );
   }

@@ -8,6 +8,7 @@ import 'package:nutripersonal/core/auth/sign_up/sign_up_screen.dart';
 import 'package:nutripersonal/screens/home/home_screen.dart';
 import 'package:nutripersonal/ui/app_dialogs.dart';
 import 'package:nutripersonal/utils/services/firebase_auth_service.dart';
+import 'package:nutripersonal/utils/services/google_sign_service.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class SignInScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwdController = TextEditingController();
   final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
+  final GoogleSignInService _googleSignInService = GoogleSignInService();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -58,7 +60,8 @@ class SignInScreen extends StatelessWidget {
                           children: [
                             input("E-mail", Icons.email, _emailController),
                             const SizedBox(height: 20),
-                            input("Senha", Icons.password, _pwdController, true),
+                            input(
+                                "Senha", Icons.password, _pwdController, true),
                             const SizedBox(height: 35),
                             ElevatedButton(
                               onPressed: () => signInWithPasswd(context),
@@ -77,7 +80,7 @@ class SignInScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   OutlinedButton.icon(
-                                    onPressed: loginWithGoogle,
+                                    onPressed: () => signInWithGoogle(context),
                                     label: const Text(
                                       "Entrar com conta do Google",
                                       style: TextStyle(
@@ -108,7 +111,8 @@ class SignInScreen extends StatelessWidget {
     );
   }
 
-  Widget input(String label, IconData icon, TextEditingController controller, [bool? obscure]) {
+  Widget input(String label, IconData icon, TextEditingController controller,
+      [bool? obscure]) {
     return TextFormField(
       controller: controller,
       obscureText: obscure ?? false,
@@ -183,8 +187,9 @@ class SignInScreen extends StatelessWidget {
     }
   }
 
-  void loginWithGoogle() {
-    print("login with Google");
+  void signInWithGoogle(BuildContext context) async {
+    print("sign in with Google");
+    _googleSignInService.signIn();
   }
 
   void goToSignUpScreen(BuildContext context) {

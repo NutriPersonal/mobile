@@ -9,6 +9,7 @@ import 'package:nutripersonal/screens/home/home_screen.dart';
 import 'package:nutripersonal/ui/app_dialogs.dart';
 import 'package:nutripersonal/utils/app_validators.dart';
 import 'package:nutripersonal/utils/services/firebase_auth_service.dart';
+import 'package:nutripersonal/utils/services/google_sign_service.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class SignUpScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwdController = TextEditingController();
   final FirebaseAuthService _firebaseAuthService = FirebaseAuthService();
+  final GoogleSignInService _googleSignInService = GoogleSignInService();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -96,21 +98,23 @@ class SignUpScreen extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  OutlinedButton.icon(
-                                    onPressed: loginWithGoogle,
-                                    style: OutlinedButton.styleFrom(
-                                      padding: const EdgeInsets.all(10),
-                                    ),
-                                    label: const Text(
-                                      "Entrar com conta do Google",
-                                      style: TextStyle(
-                                        fontSize: 15,
+                                  InkWell(
+                                    child: OutlinedButton.icon(
+                                      onPressed: () => signUpWithGoogle(),
+                                      style: OutlinedButton.styleFrom(
+                                        padding: const EdgeInsets.all(10),
                                       ),
-                                    ),
-                                    icon: SvgPicture.asset(
-                                      AppAssets.googleIcon,
-                                      width: 20,
-                                      height: 20,
+                                      label: const Text(
+                                        "Cadastrar com conta do Google",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      icon: SvgPicture.asset(
+                                        AppAssets.googleIcon,
+                                        width: 20,
+                                        height: 20,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -210,8 +214,9 @@ class SignUpScreen extends StatelessWidget {
     }
   }
 
-  void loginWithGoogle() {
-    print("login with Google");
+  void signUpWithGoogle() async {
+    print("sign up with Google");
+    await _googleSignInService.signIn();
   }
 
   void goToSignInPage(BuildContext context) {
