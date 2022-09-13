@@ -10,6 +10,7 @@ import 'package:nutripersonal/ui/app_dialogs.dart';
 import 'package:nutripersonal/utils/app_validators.dart';
 import 'package:nutripersonal/utils/services/firebase_auth_service.dart';
 import 'package:nutripersonal/utils/services/google_sign_service.dart';
+import 'package:vrouter/vrouter.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -220,9 +221,10 @@ class SignUpScreen extends StatelessWidget {
   }
 
   void goToSignInPage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (builder) => SignInScreen()),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (builder) => SignInScreen()),
+    // );
+    context.vRouter.to('/sign-in');
   }
 }

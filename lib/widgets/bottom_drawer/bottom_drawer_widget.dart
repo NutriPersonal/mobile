@@ -5,6 +5,7 @@ import 'package:nutripersonal/core/settings/settings_screen.dart';
 import 'package:nutripersonal/screens/home/home_screen.dart';
 import 'package:nutripersonal/screens/nutritionists/nutritionists_screen.dart';
 import 'package:nutripersonal/screens/profile/profile_screen.dart';
+import 'package:vrouter/vrouter.dart';
 
 class BottomDrawerWidget extends StatelessWidget {
   const BottomDrawerWidget({Key? key, required this.screenId})
@@ -24,28 +25,28 @@ class BottomDrawerWidget extends StatelessWidget {
             context,
             screenId == AppConstants.homeScreenId,
             "Início",
-            const HomeScreen(),
+            '/home',
             Icons.home,
           ),
           _buildButton(
             context,
             screenId == AppConstants.nutritionistsScreenId,
             "Nutricionistas",
-            const NutritionistsScreen(),
+            '/nutritionists',
             Icons.people_outline,
           ),
           _buildButton(
             context,
             screenId == AppConstants.profileScreenId,
             "Perfil",
-            const ProfileScreen(),
+            '/profile',
             Icons.person_outline,
           ),
           _buildButton(
             context,
             screenId == AppConstants.settingsScreenId,
             "Configurações",
-            const SettingsScreen(),
+            '/settings',
             Icons.settings_outlined,
           ),
         ],
@@ -57,7 +58,7 @@ class BottomDrawerWidget extends StatelessWidget {
     BuildContext context,
     bool selected,
     String label,
-    Widget screen,
+    String route,
     IconData icon,
   ) {
     var color = selected ? AppColors.primary : Colors.grey.shade400;
@@ -65,10 +66,11 @@ class BottomDrawerWidget extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: () => {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (builder) => screen),
-          )
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (builder) => screen),
+          // ),
+          context.vRouter.to(route)
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),

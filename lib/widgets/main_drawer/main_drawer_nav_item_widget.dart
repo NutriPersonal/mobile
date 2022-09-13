@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutripersonal/constants/app_colors.dart';
+import 'package:vrouter/vrouter.dart';
 
 class MainDrawerNavItemWidget extends StatelessWidget {
   const MainDrawerNavItemWidget({
@@ -7,14 +8,14 @@ class MainDrawerNavItemWidget extends StatelessWidget {
     required this.context,
     required this.labelText,
     required this.iconName,
-    required this.screen,
+    required this.route,
     required this.selected,
   }) : super(key: key);
 
   final BuildContext context;
   final String labelText;
   final IconData iconName;
-  final Widget screen;
+  final String route;
   final bool selected;
 
   @override
@@ -49,6 +50,7 @@ class MainDrawerNavItemWidget extends StatelessWidget {
 
   void navigateToScreen() {
     // TODO: implement go to screen.
-    Navigator.push(context, MaterialPageRoute(builder: (builder) => screen));
+    // Navigator.push(context, MaterialPageRoute(builder: (builder) => screen));
+    context.vRouter.to(route);
   }
 }

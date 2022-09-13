@@ -5,6 +5,7 @@ import 'package:nutripersonal/constants/app_constants.dart';
 import 'package:nutripersonal/constants/assets_paths.dart';
 import 'package:nutripersonal/core/auth/sign_in/sign_in_screen.dart';
 import 'package:nutripersonal/core/auth/sign_up/sign_up_screen.dart';
+import 'package:vrouter/vrouter.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -103,16 +104,18 @@ class AuthScreen extends StatelessWidget {
   }
 
   void goToSignInScreen(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (builder) => SignInScreen()),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (builder) => SignInScreen()),
+    // );
+    context.vRouter.to('/sign-in');
   }
 
   void goToSignUpScreen(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (builder) => SignUpScreen()),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (builder) => SignUpScreen()),
+    // );
+    context.vRouter.to('/sign-up');
   }
 }

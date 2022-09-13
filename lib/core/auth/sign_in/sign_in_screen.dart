@@ -9,6 +9,7 @@ import 'package:nutripersonal/screens/home/home_screen.dart';
 import 'package:nutripersonal/ui/app_dialogs.dart';
 import 'package:nutripersonal/utils/services/firebase_auth_service.dart';
 import 'package:nutripersonal/utils/services/google_sign_service.dart';
+import 'package:vrouter/vrouter.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({Key? key}) : super(key: key);
@@ -162,10 +163,11 @@ class SignInScreen extends StatelessWidget {
 
       switch (authResult) {
         case 'success':
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (builder) => HomeScreen()),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (builder) => HomeScreen()),
+          // );
+          context.vRouter.to('/home');
           AppDialogs.snackbar(context, 'Bem-vindo(a)!');
           print("success");
           break;
@@ -193,9 +195,10 @@ class SignInScreen extends StatelessWidget {
   }
 
   void goToSignUpScreen(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (builder) => SignUpScreen()),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (builder) => SignUpScreen()),
+    // );
+    context.vRouter.to('/sign-up');
   }
 }
