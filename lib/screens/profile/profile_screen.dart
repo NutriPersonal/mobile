@@ -9,15 +9,15 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: MainAppBarWidget(),
+    return Scaffold(
+      appBar: const MainAppBarWidget(),
       drawer: MainDrawerWidget(
         screenId: AppConstants.profileScreenId,
       ),
-      bottomNavigationBar: BottomDrawerWidget(
+      bottomNavigationBar: const BottomDrawerWidget(
         screenId: AppConstants.profileScreenId,
       ),
-      body: Text("Profile Screen"),
+      body: const Text("Profile Screen"),
     );
   }
 }

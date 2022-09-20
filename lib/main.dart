@@ -4,13 +4,17 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:nutripersonal/config/themes/light_theme.dart';
 import 'package:nutripersonal/core/auth/sign_in/sign_in_screen.dart';
+import 'package:nutripersonal/core/auth/sign_up/sign_up_screen.dart';
 import 'package:nutripersonal/core/settings/settings_screen.dart';
 import 'package:nutripersonal/screens/chatbot/chatbot_screen.dart';
 import 'package:nutripersonal/screens/home/home_screen.dart';
 import 'package:nutripersonal/screens/nutritionists/nutritionists_screen.dart';
 import 'package:nutripersonal/screens/profile/profile_screen.dart';
 import 'package:nutripersonal/screens/splash/splash_screen.dart';
+import 'package:nutripersonal/utils/entities/user_entity.dart';
+import 'package:nutripersonal/utils/services/auth_service.dart';
 import 'package:nutripersonal/utils/services/firebase_auth_service.dart';
+import 'package:nutripersonal/utils/services/secure_storage_service.dart';
 import 'package:vrouter/vrouter.dart';
 
 Future<void> main() async {
@@ -28,6 +32,7 @@ class NutriPersonal extends StatefulWidget {
 
 class _NutriPersonalState extends State<NutriPersonal> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+  final SecureStorageService _secureStorageService = SecureStorageService();
   bool isAuthenticated = false;
 
   @override
@@ -52,7 +57,7 @@ class _NutriPersonalState extends State<NutriPersonal> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return VRouter(
       debugShowCheckedModeBanner: false,
       title: 'NutriPersonal',
@@ -64,7 +69,7 @@ class _NutriPersonalState extends State<NutriPersonal> {
           beforeEnter: (_) async => isAuthenticated ? _.to('/home') : null,
           stackedRoutes: [
             VWidget(path: '/sign-in', widget: SignInScreen()),
-            VWidget(path: '/sign-up', widget: SignInScreen()),
+            VWidget(path: '/sign-up', widget: SignUpScreen()),
           ],
         ),
         VGuard(

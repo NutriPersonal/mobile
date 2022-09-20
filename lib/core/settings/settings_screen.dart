@@ -14,15 +14,15 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: MainAppBarWidget(),
+    return Scaffold(
+      appBar: const MainAppBarWidget(),
       drawer: MainDrawerWidget(
         screenId: AppConstants.settingsScreenId,
       ),
-      bottomNavigationBar: BottomDrawerWidget(
+      bottomNavigationBar: const BottomDrawerWidget(
         screenId: AppConstants.settingsScreenId,
       ),
-      body: Text("Settings Screen"),
+      body: const Text("Settings Screen"),
     );
   }
 }

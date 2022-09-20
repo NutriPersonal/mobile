@@ -1,11 +1,8 @@
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
-import 'package:nutripersonal/constants/app_colors.dart';
 import 'package:nutripersonal/constants/app_constants.dart';
-import 'package:nutripersonal/constants/assets_paths.dart';
 import 'package:nutripersonal/screens/chatbot/widgets/chatbot_messages_widget.dart';
 import 'package:nutripersonal/screens/chatbot/widgets/chatbot_user_input_widget.dart';
-import 'package:nutripersonal/widgets/bottom_drawer/bottom_drawer_widget.dart';
 import 'package:nutripersonal/widgets/main_app_bar/main_app_bar_widget.dart';
 import 'package:nutripersonal/widgets/main_drawer/main_drawer_widget.dart';
 
@@ -66,22 +63,20 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MainAppBarWidget(),
-      drawer: const MainDrawerWidget(
+      drawer: MainDrawerWidget(
         screenId: AppConstants.chatBotScreenId,
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Expanded(
-              child: ChatbotMessagesWidget(
-                messages: messages,
-              ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ChatbotMessagesWidget(
+              messages: messages,
             ),
-            ChatbotUserInputWidget(
-              onSendMessage: onSendMessage,
-            ),
-          ],
-        ),
+          ),
+          ChatbotUserInputWidget(
+            onSendMessage: onSendMessage,
+          ),
+        ],
       ),
     );
   }

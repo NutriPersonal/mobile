@@ -8,4 +8,5 @@ class AppAssets {
   static const String chatIcon = 'assets/icons/chat.png';
   static const String dialogFlowCredentialsJson =
       "assets/config/dialog_flow_auth.json";
+  static const String iconUser = 'assets/icons/user.png';
 }

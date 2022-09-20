@@ -9,15 +9,15 @@ class NutritionistsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: MainAppBarWidget(),
+    return Scaffold(
+      appBar: const MainAppBarWidget(),
       drawer: MainDrawerWidget(
         screenId: AppConstants.nutritionistsScreenId,
       ),
-      bottomNavigationBar: BottomDrawerWidget(
+      bottomNavigationBar: const BottomDrawerWidget(
         screenId: AppConstants.nutritionistsScreenId,
       ),
-      body: Text("Nutritionists Screen"),
+      body: const Text("Nutritionists Screen"),
     );
   }
 }

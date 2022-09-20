@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:nutripersonal/constants/app_colors.dart';
 import 'package:nutripersonal/constants/app_constants.dart';
+import 'package:nutripersonal/utils/entities/user_entity.dart';
 import 'package:nutripersonal/utils/services/auth_service.dart';
-import 'package:nutripersonal/utils/services/firebase_auth_service.dart';
-import 'package:nutripersonal/utils/services/google_sign_service.dart';
 import 'package:nutripersonal/widgets/main_drawer/main_drawer_header_widget.dart';
 import 'package:nutripersonal/widgets/main_drawer/main_drawer_nav_item_widget.dart';
 import 'package:vrouter/vrouter.dart';
 
 class MainDrawerWidget extends StatelessWidget {
-  const MainDrawerWidget({Key? key, required this.screenId}) : super(key: key);
+  MainDrawerWidget({Key? key, required this.screenId}) : super(key: key);
+  final AuthService _authService = AuthService();
   final int screenId;
 
   @override
   Widget build(BuildContext context) {
-    const name = 'Bruno Ferreira';
-    const email = 'dev.nutripersonal@gmail.com';
-    const urlImage = 'https://avatars.githubusercontent.com/u/76089674?v=4';
+    UserEntity userEntity = _authService.getSignedInUser();
 
     return Drawer(
       child: Material(
@@ -25,10 +23,10 @@ class MainDrawerWidget extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  const MainDrawerHeaderWidget(
-                    name: name,
-                    email: email,
-                    urlImage: urlImage,
+                  MainDrawerHeaderWidget(
+                    name: userEntity.name,
+                    email: userEntity.email,
+                    urlImage: userEntity.photoUrl,
                   ),
                   Container(
                     // padding: const EdgeInsets.symmetric(horizontal: 20),
