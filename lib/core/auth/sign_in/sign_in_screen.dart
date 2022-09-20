@@ -2,10 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nutripersonal/constants/app_colors.dart';
-import 'package:nutripersonal/constants/app_constants.dart';
 import 'package:nutripersonal/constants/assets_paths.dart';
-import 'package:nutripersonal/core/auth/sign_up/sign_up_screen.dart';
-import 'package:nutripersonal/screens/home/home_screen.dart';
 import 'package:nutripersonal/ui/app_dialogs.dart';
 import 'package:nutripersonal/utils/services/firebase_auth_service.dart';
 import 'package:nutripersonal/utils/services/google_sign_service.dart';
@@ -154,7 +151,6 @@ class SignInScreen extends StatelessWidget {
   }
 
   void signInWithPasswd(BuildContext context) async {
-    print("Signning");
     if (_formKey.currentState!.validate()) {
       final authResult = await _firebaseAuthService.signIn(
         _emailController.text,
@@ -163,10 +159,6 @@ class SignInScreen extends StatelessWidget {
 
       switch (authResult) {
         case 'success':
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (builder) => HomeScreen()),
-          // );
           context.vRouter.to('/home');
           AppDialogs.snackbar(context, 'Bem-vindo(a)!');
           print("success");
@@ -191,14 +183,11 @@ class SignInScreen extends StatelessWidget {
 
   void signInWithGoogle(BuildContext context) async {
     print("sign in with Google");
-    _googleSignInService.signIn();
+    await _googleSignInService.signIn();
+    context.vRouter.to('/home');
   }
 
   void goToSignUpScreen(BuildContext context) {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (builder) => SignUpScreen()),
-    // );
     context.vRouter.to('/sign-up');
   }
 }

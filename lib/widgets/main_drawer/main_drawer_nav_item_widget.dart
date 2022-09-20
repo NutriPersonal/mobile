@@ -8,32 +8,40 @@ class MainDrawerNavItemWidget extends StatelessWidget {
     required this.context,
     required this.labelText,
     required this.iconName,
-    required this.route,
-    required this.selected,
+    this.route,
+    this.selected,
+    this.callback,
   }) : super(key: key);
 
   final BuildContext context;
   final String labelText;
   final IconData iconName;
-  final String route;
-  final bool selected;
+  final String? route;
+  final bool? selected;
+  final VoidCallback? callback;
 
   @override
   Widget build(BuildContext context) {
     var hoverColor = AppColors.pLighter.withAlpha(90);
 
     return ListTile(
-      onTap: () => {navigateToScreen()},
+      onTap: route != null
+          ? () => {context.vRouter.to(route!)}
+          : (callback ?? () => {}),
       selectedTileColor: hoverColor,
-      selected: selected,
+      selected: selected != null && selected == true,
       leading: Icon(
         iconName,
-        color: selected ? AppColors.pDark : AppColors.primary,
+        color: selected != null && selected == true
+            ? AppColors.pDark
+            : AppColors.primary,
       ),
       title: Text(
         labelText,
         style: TextStyle(
-          color: selected ? AppColors.pDark : AppColors.primary,
+          color: selected != null && selected == true
+              ? AppColors.pDark
+              : AppColors.primary,
           fontSize: 18,
         ),
       ),
@@ -46,11 +54,5 @@ class MainDrawerNavItemWidget extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void navigateToScreen() {
-    // TODO: implement go to screen.
-    // Navigator.push(context, MaterialPageRoute(builder: (builder) => screen));
-    context.vRouter.to(route);
   }
 }

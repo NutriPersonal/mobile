@@ -13,7 +13,6 @@ class GoogleSignInService {
       );
 
   Future<void> signIn() async {
-    _googleSignIn.signOut();
     GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
 
     GoogleSignInAuthentication? googleSignInAuthentication =
@@ -26,6 +25,4 @@ class GoogleSignInService {
     UserCredential userCredential =
         await _firebaseAuth.signInWithCredential(credential);
   }
-
-  Future<void> signOut() async => await GoogleSignIn().disconnect();
 }

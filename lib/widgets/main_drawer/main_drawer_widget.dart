@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nutripersonal/constants/app_colors.dart';
 import 'package:nutripersonal/constants/app_constants.dart';
-import 'package:nutripersonal/core/auth/sign_in/sign_in_screen.dart';
-import 'package:nutripersonal/core/auth/sign_up/sign_up_screen.dart';
-import 'package:nutripersonal/core/settings/settings_screen.dart';
-import 'package:nutripersonal/screens/chatbot/chatbot_screen.dart';
-import 'package:nutripersonal/screens/home/home_screen.dart';
+import 'package:nutripersonal/utils/services/auth_service.dart';
+import 'package:nutripersonal/utils/services/firebase_auth_service.dart';
+import 'package:nutripersonal/utils/services/google_sign_service.dart';
 import 'package:nutripersonal/widgets/main_drawer/main_drawer_header_widget.dart';
 import 'package:nutripersonal/widgets/main_drawer/main_drawer_nav_item_widget.dart';
+import 'package:vrouter/vrouter.dart';
 
 class MainDrawerWidget extends StatelessWidget {
   const MainDrawerWidget({Key? key, required this.screenId}) : super(key: key);
@@ -24,66 +23,71 @@ class MainDrawerWidget extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: Container(
-                child: Column(
-                  children: [
-                    const MainDrawerHeaderWidget(
-                      name: name,
-                      email: email,
-                      urlImage: urlImage,
-                    ),
-                    Container(
-                      // padding: const EdgeInsets.symmetric(horizontal: 20),
-                      height: 300,
-                      padding: const EdgeInsets.only(right: 50),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            MainDrawerNavItemWidget(
-                              context: context,
-                              labelText: 'Início',
-                              iconName: Icons.home,
-                              route: '/home',
-                              selected: screenId == 0,
-                            ),
-                            const SizedBox(height: 8),
-                            MainDrawerNavItemWidget(
-                              context: context,
-                              labelText: 'ChatBot',
-                              iconName: Icons.chat,
-                              route: '/chatbot',
-                              selected: screenId == 1,
-                            ),
-                            const SizedBox(height: 8),
-                            MainDrawerNavItemWidget(
-                              context: context,
-                              labelText: 'Settings',
-                              iconName: Icons.settings,
-                              route: '/settings',
-                              selected: screenId == 2,
-                            ),
-                            const SizedBox(height: 8),
-                            MainDrawerNavItemWidget(
-                              context: context,
-                              labelText: 'Sign in',
-                              iconName: Icons.login,
-                              route: '/sign-in',
-                              selected: screenId == AppConstants.signInScreenId,
-                            ),
-                            const SizedBox(height: 8),
-                            MainDrawerNavItemWidget(
-                              context: context,
-                              labelText: 'Sign up',
-                              iconName: Icons.create,
-                              route: '/sign-up',
-                              selected: screenId == AppConstants.signUpScreenId,
-                            ),
-                          ],
-                        ),
+              child: Column(
+                children: [
+                  const MainDrawerHeaderWidget(
+                    name: name,
+                    email: email,
+                    urlImage: urlImage,
+                  ),
+                  Container(
+                    // padding: const EdgeInsets.symmetric(horizontal: 20),
+                    // height: 300,
+                    padding: const EdgeInsets.only(right: 50),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          MainDrawerNavItemWidget(
+                            context: context,
+                            labelText: 'Início',
+                            iconName: Icons.home,
+                            route: '/home',
+                            selected: screenId == 0,
+                          ),
+                          const SizedBox(height: 8),
+                          MainDrawerNavItemWidget(
+                            context: context,
+                            labelText: 'Conversar',
+                            iconName: Icons.chat,
+                            route: '/chatbot',
+                            selected: screenId == 1,
+                          ),
+                          const SizedBox(height: 8),
+                          MainDrawerNavItemWidget(
+                            context: context,
+                            labelText: 'Configurações',
+                            iconName: Icons.settings,
+                            route: '/settings',
+                            selected: screenId == 2,
+                          ),
+                          const SizedBox(height: 8),
+                          MainDrawerNavItemWidget(
+                            context: context,
+                            labelText: 'Sign in',
+                            iconName: Icons.login,
+                            route: '/sign-in',
+                            selected: screenId == AppConstants.signInScreenId,
+                          ),
+                          const SizedBox(height: 8),
+                          MainDrawerNavItemWidget(
+                            context: context,
+                            labelText: 'Sign up',
+                            iconName: Icons.create,
+                            route: '/sign-up',
+                            selected: screenId == AppConstants.signUpScreenId,
+                          ),
+                          const SizedBox(height: 8),
+                          MainDrawerNavItemWidget(
+                            context: context,
+                            labelText: 'Sair do app',
+                            iconName: Icons.logout,
+                            callback: () => signOut(context),
+                          ),
+                        ],
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
             ),
             Padding(
@@ -129,5 +133,10 @@ class MainDrawerWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void signOut(BuildContext context) async {
+    await AuthService().signOut();
+    context.vRouter.to('/sign-in');
   }
 }

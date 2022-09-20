@@ -66,10 +66,6 @@ class BottomDrawerWidget extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: () => {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (builder) => screen),
-          // ),
           context.vRouter.to(route)
         },
         child: Padding(

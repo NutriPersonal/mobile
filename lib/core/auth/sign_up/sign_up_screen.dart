@@ -101,7 +101,7 @@ class SignUpScreen extends StatelessWidget {
                                 children: [
                                   InkWell(
                                     child: OutlinedButton.icon(
-                                      onPressed: () => signUpWithGoogle(),
+                                      onPressed: () => signUpWithGoogle(context),
                                       style: OutlinedButton.styleFrom(
                                         padding: const EdgeInsets.all(10),
                                       ),
@@ -215,16 +215,13 @@ class SignUpScreen extends StatelessWidget {
     }
   }
 
-  void signUpWithGoogle() async {
+  void signUpWithGoogle(BuildContext context) async {
     print("sign up with Google");
     await _googleSignInService.signIn();
+    context.vRouter.to('/home');
   }
 
   void goToSignInPage(BuildContext context) {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (builder) => SignInScreen()),
-    // );
     context.vRouter.to('/sign-in');
   }
 }

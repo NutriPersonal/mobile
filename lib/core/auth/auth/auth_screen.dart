@@ -104,18 +104,10 @@ class AuthScreen extends StatelessWidget {
   }
 
   void goToSignInScreen(BuildContext context) {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (builder) => SignInScreen()),
-    // );
     context.vRouter.to('/sign-in');
   }
 
   void goToSignUpScreen(BuildContext context) {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (builder) => SignUpScreen()),
-    // );
     context.vRouter.to('/sign-up');
   }
 }
