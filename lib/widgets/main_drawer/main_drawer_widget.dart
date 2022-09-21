@@ -9,13 +9,11 @@ import 'package:vrouter/vrouter.dart';
 
 class MainDrawerWidget extends StatelessWidget {
   MainDrawerWidget({Key? key, required this.screenId}) : super(key: key);
-  final AuthService _authService = AuthService();
+  final UserEntity _userEntity = AuthService.currentUser();
   final int screenId;
 
   @override
   Widget build(BuildContext context) {
-    UserEntity userEntity = _authService.getSignedInUser();
-
     return Drawer(
       child: Material(
         child: Column(
@@ -24,9 +22,9 @@ class MainDrawerWidget extends StatelessWidget {
               child: Column(
                 children: [
                   MainDrawerHeaderWidget(
-                    name: userEntity.name,
-                    email: userEntity.email,
-                    urlImage: userEntity.photoUrl,
+                    name: _userEntity.name,
+                    email: _userEntity.email,
+                    urlImage: _userEntity.photoUrl,
                   ),
                   Container(
                     // padding: const EdgeInsets.symmetric(horizontal: 20),

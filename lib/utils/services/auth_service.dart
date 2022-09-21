@@ -14,25 +14,22 @@ class AuthService {
     }
   }
 
-  UserEntity getSignedInUser() {
-    print("_firebaseAuth");
-    print(_firebaseAuth.currentUser);
-
-    print("_googleSignIn");
-    print(_googleSignIn.currentUser);
-    if (_firebaseAuth.currentUser != null) {
-      User? currentUser = _firebaseAuth.currentUser;
+  static UserEntity currentUser() {
+    if (FirebaseAuth.instance.currentUser != null) {
+      User? currentUser = FirebaseAuth.instance.currentUser;
 
       return UserEntity(
+        id: currentUser?.uid,
         name: currentUser?.displayName,
         email: currentUser?.email,
         photoUrl: currentUser?.photoURL,
         // photoUrl: 'https://s2.glbimg.com/ODHuyW_PWreBSaIHadoMF7UvHFE=/800x0/smart/filters:strsdasdasdaip_icc()/s.glbimg.com/po/tt2/f/original/2014/09/11/mac-os-asdasdlion.png',
       );
     } else {
-      GoogleSignInAccount? currentUser = _googleSignIn.currentUser;
+      GoogleSignInAccount? currentUser = GoogleSignIn().currentUser;
 
       return UserEntity(
+        id: currentUser?.id,
         name: currentUser?.displayName,
         email: currentUser?.email,
         photoUrl: currentUser?.photoUrl,

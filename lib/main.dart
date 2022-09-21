@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:nutripersonal/config/themes/light_theme.dart';
 import 'package:nutripersonal/core/auth/sign_in/sign_in_screen.dart';
 import 'package:nutripersonal/core/auth/sign_up/sign_up_screen.dart';
@@ -11,8 +10,6 @@ import 'package:nutripersonal/screens/home/home_screen.dart';
 import 'package:nutripersonal/screens/nutritionists/nutritionists_screen.dart';
 import 'package:nutripersonal/screens/profile/profile_screen.dart';
 import 'package:nutripersonal/screens/splash/splash_screen.dart';
-import 'package:nutripersonal/utils/entities/user_entity.dart';
-import 'package:nutripersonal/utils/services/auth_service.dart';
 import 'package:nutripersonal/utils/services/firebase_auth_service.dart';
 import 'package:nutripersonal/utils/services/secure_storage_service.dart';
 import 'package:vrouter/vrouter.dart';
@@ -63,7 +60,7 @@ class _NutriPersonalState extends State<NutriPersonal> {
       title: 'NutriPersonal',
       theme: lightTheme,
       navigatorKey: _navigatorKey,
-      initialUrl: '/splash',
+      initialUrl: '/home',
       routes: [
         VGuard(
           beforeEnter: (_) async => isAuthenticated ? _.to('/home') : null,
