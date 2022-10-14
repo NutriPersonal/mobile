@@ -51,7 +51,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     return Scaffold(
       appBar: const MainAppBarWidget(),
       drawer: MainDrawerWidget(
-        screenId: AppConstants.nutritionistsScreenId,
+        screenId: AppConstants.chatBotScreenId,
       ),
       body: Chat(
         messages: _messages,
