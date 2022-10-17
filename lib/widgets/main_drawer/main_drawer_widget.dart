@@ -5,11 +5,13 @@ import 'package:nutripersonal/utils/entities/user_entity.dart';
 import 'package:nutripersonal/utils/services/auth_service.dart';
 import 'package:nutripersonal/widgets/main_drawer/main_drawer_header_widget.dart';
 import 'package:nutripersonal/widgets/main_drawer/main_drawer_nav_item_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vrouter/vrouter.dart';
 
 class MainDrawerWidget extends StatelessWidget {
   MainDrawerWidget({Key? key, required this.screenId}) : super(key: key);
   final UserEntity _userEntity = AuthService.currentUser();
+  final Uri _uri = Uri();
   final int screenId;
 
   @override
@@ -56,22 +58,22 @@ class MainDrawerWidget extends StatelessWidget {
                             route: '/settings',
                             selected: screenId == 2,
                           ),
-                          const SizedBox(height: 8),
-                          MainDrawerNavItemWidget(
-                            context: context,
-                            labelText: 'Sign in',
-                            iconName: Icons.login,
-                            route: '/sign-in',
-                            selected: screenId == AppConstants.signInScreenId,
-                          ),
-                          const SizedBox(height: 8),
-                          MainDrawerNavItemWidget(
-                            context: context,
-                            labelText: 'Sign up',
-                            iconName: Icons.create,
-                            route: '/sign-up',
-                            selected: screenId == AppConstants.signUpScreenId,
-                          ),
+                          // const SizedBox(height: 8),
+                          // MainDrawerNavItemWidget(
+                          //   context: context,
+                          //   labelText: 'Sign in',
+                          //   iconName: Icons.login,
+                          //   route: '/sign-in',
+                          //   selected: screenId == AppConstants.signInScreenId,
+                          // ),
+                          // const SizedBox(height: 8),
+                          // MainDrawerNavItemWidget(
+                          //   context: context,
+                          //   labelText: 'Sign up',
+                          //   iconName: Icons.create,
+                          //   route: '/sign-up',
+                          //   selected: screenId == AppConstants.signUpScreenId,
+                          // ),
                           const SizedBox(height: 8),
                           MainDrawerNavItemWidget(
                             context: context,
@@ -92,24 +94,36 @@ class MainDrawerWidget extends StatelessWidget {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text(
-                        "Suporte ",
-                        style: TextStyle(color: AppColors.pLight),
+                    children: [
+                      InkWell(
+                        onTap: () =>
+                            _launchUrl('mailto:suporte.nutripersonal.com'),
+                        child: const Text(
+                          "Suporte ",
+                          style: TextStyle(color: AppColors.pLight),
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
-                      Text(
-                        "GitHub ",
-                        style: TextStyle(color: AppColors.pLight),
+                      InkWell(
+                        onTap: () => _launchUrl(
+                            'https://github.com/NutriPersonal/mobile'),
+                        child: const Text(
+                          "GitHub ",
+                          style: TextStyle(color: AppColors.pLight),
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
-                      Text(
-                        "Instagram ",
-                        style: TextStyle(color: AppColors.pLight),
+                      InkWell(
+                        onTap: () => _launchUrl(
+                            'https://www.instagram.com/nutri.personal.fb/'),
+                        child: const Text(
+                          "Instagram ",
+                          style: TextStyle(color: AppColors.pLight),
+                        ),
                       ),
                     ],
                   ),
@@ -134,5 +148,9 @@ class MainDrawerWidget extends StatelessWidget {
   void signOut(BuildContext context) async {
     await AuthService().signOut();
     context.vRouter.to('/sign-in');
+  }
+
+  void _launchUrl(url) {
+    launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
   }
 }
